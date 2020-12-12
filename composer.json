@@ -1,0 +1,11 @@
+{
+    "name": "devlop/buffer",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Johan Rosenson",
+            "email": "johan@devlop.se"
+        }
+    ],
+    "require": {}
+}
