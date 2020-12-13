@@ -1,11 +1,18 @@
 {
     "name": "devlop/buffer",
+    "description": "Simple Buffer for automatically managing a stack with a callback",
     "type": "library",
+    "license": "MIT",
     "authors": [
         {
             "name": "Johan Rosenson",
             "email": "johan@devlop.se"
         }
     ],
-    "require": {}
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Devlop\\Buffer\\": "src/"
+        }
+    }
 }
