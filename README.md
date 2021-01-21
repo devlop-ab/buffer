@@ -1,6 +1,6 @@
 <p align="center">
     <a href="https://packagist.org/packages/devlop/buffer"><img src="https://img.shields.io/packagist/v/devlop/buffer" alt="Latest Stable Version"></a>
-    <a href="https://packagist.org/packages/devlop/buffer"><img src="https://img.shields.io/packagist/l/devlop/buffer" alt="License"></a>
+    <a href="https://github.com/devlop-ab/buffer/blob/master/LICENSE.md"><img src="https://img.shields.io/packagist/l/devlop/buffer" alt="License"></a>
 </p>
 
 # Buffer
