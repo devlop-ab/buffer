@@ -1,6 +1,6 @@
 {
     "name": "devlop/buffer",
-    "description": "Simple Buffer for automatically managing a stack with a callback",
+    "description": "Simple Buffer for iterating over an iteratable and regularly applying a callback.",
     "type": "library",
     "license": "MIT",
     "authors": [
@@ -9,10 +9,29 @@
             "email": "johan@devlop.se"
         }
     ],
-    "require": {},
+    "require": {
+        "php": "^7.4|^8.0"
+    },
+    "require-dev": {
+        "devlop/phpunit-exception-assertions": "^1.0",
+        "phpunit/phpunit": "^9.5",
+        "symfony/var-dumper": "^5.2"
+    },
     "autoload": {
         "psr-4": {
             "Devlop\\Buffer\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Devlop\\Buffer\\Tests\\": "tests/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.x-dev"
         }
     }
 }

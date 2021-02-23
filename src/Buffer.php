@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace Devlop\Buffer;
 
+use Countable;
 use InvalidArgumentException;
 
-final class Buffer
+final class Buffer implements Countable
 {
     /**
      * @var array<int,mixed>
@@ -30,7 +31,7 @@ final class Buffer
     public function __construct(int $size, callable $callback)
     {
         if ($size <= 0) {
-            throw new InvalidArgumentException('Argument $size must be positive.');
+            throw new InvalidArgumentException('Argument $size must be a positive integer.');
         }
 
         $this->callback = $callback;
@@ -42,7 +43,7 @@ final class Buffer
      * Iterate over an iterable and automatically push to
      * the buffer until everything have been iterated
      *
-     * @param  iterable  $iterable
+     * @param  iterable<mixed>  $iterable
      * @param  int  $size
      * @param  callable  $callback
      * @return void
@@ -68,19 +69,17 @@ final class Buffer
     {
         $this->stack[] = $item;
 
-        if (count($this->stack) >= $this->size) {
+        if (count($this) >= $this->size) {
             $this->flush();
         }
     }
 
     /**
      * Flush the stack to the callback and erase the stack after invoking the callback
-     *
-     * @return void
      */
     public function flush() : void
     {
-        if (count($this->stack) > 0) {
+        if (! $this->isEmpty()) {
             call_user_func($this->callback, $this->stack);
         }
 
@@ -89,11 +88,25 @@ final class Buffer
 
     /**
      * Clean (erase) the stack.
-     *
-     * @return void
      */
-    private function clean() : void
+    public function clean() : void
     {
         $this->stack = [];
+    }
+
+    /**
+     * If the buffer is empty
+     */
+    public function isEmpty() : bool
+    {
+        return count($this) === 0;
+    }
+
+    /**
+     * The current size of the buffer
+     */
+    public function count() : int
+    {
+        return count($this->stack);
     }
 }
