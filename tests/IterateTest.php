@@ -9,7 +9,8 @@ use PHPUnit\Framework\TestCase;
 
 final class IterateTest extends TestCase
 {
-    public function test_iterate_method_should_iterate_over_the_input_and_invoke_the_callback_everytime_size_is_reached_and_when_done_iterating()
+    /** @test */
+    public function iterate_method_should_iterate_over_the_input_and_invoke_the_callback_everytime_size_is_reached_and_when_done_iterating() : void
     {
         $items = [
             'value1',

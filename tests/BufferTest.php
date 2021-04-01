@@ -13,7 +13,8 @@ final class BufferTest extends TestCase
 {
     use ExceptionAssertions;
 
-    public function test_it_cannot_be_instantiated_with_a_non_positive_size() : void
+    /** @test */
+    public function it_cannot_be_instantiated_with_a_non_positive_size() : void
     {
         $sizes = [
             0,
@@ -29,7 +30,8 @@ final class BufferTest extends TestCase
         }
     }
 
-    public function test_it_can_be_instantiated_with_positive_size() : void
+    /** @test */
+    public function it_can_be_instantiated_with_positive_size() : void
     {
         $sizes = [
             1,
@@ -45,7 +47,8 @@ final class BufferTest extends TestCase
         }
     }
 
-    public function test_the_buffer_is_countable() : void
+    /** @test */
+    public function the_buffer_is_countable() : void
     {
         $buffer = new Buffer(1, function (array $items) {
             //
@@ -54,7 +57,8 @@ final class BufferTest extends TestCase
         $this->assertInstanceOf(Countable::class, $buffer);
     }
 
-    public function test_push_increases_the_count_of_the_buffer() : void
+    /** @test */
+    public function push_increases_the_count_of_the_buffer() : void
     {
         $buffer = new Buffer(10, function (array $items) {
             //
@@ -70,7 +74,8 @@ final class BufferTest extends TestCase
         );
     }
 
-    public function test_is_empty_returns_true_on_empty_buffer() : void
+    /** @test */
+    public function is_empty_returns_true_on_empty_buffer() : void
     {
         $buffer = new Buffer(10, function (array $items) {
             //
@@ -79,7 +84,8 @@ final class BufferTest extends TestCase
         $this->assertTrue($buffer->isEmpty());
     }
 
-    public function test_is_empty_returns_false_on_non_empty_buffer() : void
+    /** @test */
+    public function is_empty_returns_false_on_non_empty_buffer() : void
     {
         $buffer = new Buffer(10, function (array $items) {
             //
@@ -90,7 +96,8 @@ final class BufferTest extends TestCase
         $this->assertFalse($buffer->isEmpty());
     }
 
-    public function test_clean_empties_the_buffer() : void
+    /** @test */
+    public function clean_empties_the_buffer() : void
     {
         $buffer = new Buffer(10, function (array $items) {
             //
@@ -105,7 +112,8 @@ final class BufferTest extends TestCase
         $this->assertTrue($buffer->isEmpty());
     }
 
-    public function test_the_buffer_is_flushed_when_the_size_is_reached()
+    /** @test */
+    public function the_buffer_is_flushed_when_the_size_is_reached()
     {
         $callbackCalled = false;
 
@@ -119,7 +127,8 @@ final class BufferTest extends TestCase
         $this->assertTrue($callbackCalled);
     }
 
-    public function test_the_buffer_should_be_empty_after_the_buffer_has_been_flushed()
+    /** @test */
+    public function the_buffer_should_be_empty_after_the_buffer_has_been_flushed()
     {
         $callbackCalled = false;
 
@@ -133,7 +142,8 @@ final class BufferTest extends TestCase
         $this->assertTrue($buffer->isEmpty());
     }
 
-    public function test_the_callback_should_receive_the_same_values_as_put_into_the_stack()
+    /** @test */
+    public function the_callback_should_receive_the_same_values_as_put_into_the_stack()
     {
         $containsAllValues = false;
 
@@ -158,7 +168,8 @@ final class BufferTest extends TestCase
         $this->assertTrue($containsAllValues);
     }
 
-    public function test_the_callback_should_receive_same_count_of_values_as_put_into_the_stack()
+    /** @test */
+    public function the_callback_should_receive_same_count_of_values_as_put_into_the_stack()
     {
         $containsAllValues = false;
 
@@ -172,7 +183,8 @@ final class BufferTest extends TestCase
         $this->assertTrue($containsAllValues);
     }
 
-    public function test_the_callback_should_receive_remaining_items_when_flushed()
+    /** @test */
+    public function the_callback_should_receive_remaining_items_when_flushed()
     {
         $containsAllValues = false;
 
