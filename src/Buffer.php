@@ -75,7 +75,7 @@ final class Buffer implements Countable
     }
 
     /**
-     * Flush the stack to the callback and erase the stack after invoking the callback
+     * Apply the callback to the stack and then erase the stack.
      */
     public function flush() : void
     {
@@ -87,7 +87,7 @@ final class Buffer implements Countable
     }
 
     /**
-     * Clean (erase) the stack.
+     * Erase the stack without applying the callback.
      */
     public function clean() : void
     {
@@ -95,7 +95,7 @@ final class Buffer implements Countable
     }
 
     /**
-     * If the buffer is empty
+     * If the buffer is empty.
      */
     public function isEmpty() : bool
     {
@@ -103,7 +103,7 @@ final class Buffer implements Countable
     }
 
     /**
-     * The current size of the buffer
+     * The current size of the buffer.
      */
     public function count() : int
     {
