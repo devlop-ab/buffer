@@ -103,6 +103,14 @@ final class Buffer implements Countable
     }
 
     /**
+     * If the buffer is not empty.
+     */
+    public function isNotEmpty() : bool
+    {
+        return count($this) > 0;
+    }
+
+    /**
      * The current size of the buffer.
      */
     public function count() : int
