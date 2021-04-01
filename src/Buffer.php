@@ -99,7 +99,7 @@ final class Buffer implements Countable
      */
     public function isEmpty() : bool
     {
-        return count($this) === 0;
+        return ! $this->isNotEmpty();
     }
 
     /**
