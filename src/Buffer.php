@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Devlop\Buffer;
 
 use Countable;
+use Generator;
 use InvalidArgumentException;
 
 final class Buffer implements Countable
@@ -57,6 +58,50 @@ final class Buffer implements Countable
         }
 
         $buffer->flush();
+    }
+
+    /**
+     * Iterate over an iterable and allow yielding of
+     * individual items from inside the callback
+     *
+     * @param  iterable<mixed>  $iterable
+     * @param  int  $size
+     * @param  callable  $callback
+     * @return Generator
+     */
+    public static function yield(iterable $iterable, int $size, callable $callback) : Generator
+    {
+        $stack = [];
+
+        /**
+         * Create the buffer with a "wrapper" callback that catches the yields emitted
+         * by the callback and puts them into a seperate $stack variable.
+         */
+        $buffer = new static($size, function (array $items) use ($callback, &$stack) : void {
+            foreach (call_user_func($callback, $items) as $item) {
+                $stack[] = $item;
+            }
+        });
+
+        foreach ($iterable as $value) {
+            $buffer->push($value);
+
+            /**
+             * Yield everything in the stack (if the callback was applied).
+             */
+            while (count($stack) > 0) {
+                yield array_shift($stack);
+            }
+        }
+
+        $buffer->flush();
+
+        /**
+         * And lastly we have to yield everything remaining in the stack.
+         */
+        while (count($stack) > 0) {
+            yield array_shift($stack);
+        }
     }
 
     /**
